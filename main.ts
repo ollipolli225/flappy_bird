@@ -15,19 +15,20 @@ for (let index = 0; index <= 4; index++) {
     }
 }
 basic.forever(function () {
-    let index = 0
     while (obstacles.length > 0 && obstacles[0].get(LedSpriteProperty.X) == 0) {
-        obstacles.removeAt(0).delete()
+        let ticks = 0
+        for (let obstacle of obstacles) {
+            obstacle.change(LedSpriteProperty.X, -1)
+        }
+        if (ticks % 3 == 0) {
+            obstacles.removeAt(0).delete()
+            emteyobstacley = randint(0, 4)
+            for (let index = 0; index <= 4; index++) {
+                if (index != emteyobstacley) {
+                    obstacles.push(game.createSprite(4, index))
+                }
+            }
+        }
+        basic.pause(1000)
     }
-    for (let obstacle of obstacles) {
-        obstacle.change(LedSpriteProperty.X, -1)
-    }
-    emteyobstacley = randint(0, 4)
-    for (let index = 0; index <= 4; index++) {
-    	
-    }
-    if (index != emteyobstacley) {
-    	
-    }
-    basic.pause(1000)
 })
